@@ -9,6 +9,7 @@ export default function(props) {
   const items = props.interviewers.map((interviewerItem) => {
     return (
       <InterviewerListItem
+        key={interviewerItem.id}
         id={interviewerItem.id}
         name={interviewerItem.name}
         avatar={interviewerItem.avatar}
