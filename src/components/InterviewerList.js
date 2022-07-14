@@ -5,16 +5,15 @@ import "components/InterviewerList.scss"
 
 //{ id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
 
-export default function(props) {
+export default function InterviewerList(props) {
   const items = props.interviewers.map((interviewerItem) => {
     return (
       <InterviewerListItem
         key={interviewerItem.id}
-        id={interviewerItem.id}
         name={interviewerItem.name}
         avatar={interviewerItem.avatar}
         selected={interviewerItem.id === props.interviewer}
-        setInterviewer={props.setInterviewer}
+        setInterviewer={() => props.setInterviewer(interviewerItem.id)}
       />
     );
   });
