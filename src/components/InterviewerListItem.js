@@ -4,7 +4,7 @@ import "components/InterviewerListItem.scss"
 
 export default function (props) {
   return (
-    <li className="interviewers__item">
+    <li onClick={() => props.setInterviewer(props.id)} className="interviewers__item">
       <img
         className="interviewers__item-image"
         src={props.avatar}
