@@ -1,7 +1,9 @@
 import React from "react";
+
 import Header from "./Header";
 import Show from "./Show";
 import Empty from "./Empty";
+import Status from "./Status";
 
 import "components/Appointment/styles.scss";
 
@@ -11,6 +13,7 @@ import Form from "./Form";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE";
+const SAVING = "SAVING";
 
 export default function Appointment(props) {
 
@@ -21,6 +24,7 @@ export default function Appointment(props) {
       student: name,
       interviewer
     };
+    transition(SAVING);
     props.bookInterview(props.id, interview)
     .then(() => transition(SHOW));
   }
@@ -36,6 +40,7 @@ export default function Appointment(props) {
         />
       )}
       {mode === CREATE && (<Form interviewers={props.interviewers} onCancel={() => back(EMPTY)} onSave={save}/>)}
+      {mode === SAVING && (<Status message={"Saving"}/>)}
     </article>
   );
 }
