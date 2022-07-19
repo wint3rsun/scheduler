@@ -16,17 +16,23 @@ export default function Application(props) {
     interviewers: {}
   });
 
+  function bookInterview(id, interview) {
+    console.log(id, interview);
+  };
+
   const appointments = getAppointmentsForDay(state, state.day);
   const interviewers = getInterviewersForDay(state, state.day);
   
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
+    console.log(appointment);
     return(
     <Appointment
       key={appointment.id}
       {...appointment}
       interview={interview}
       interviewers={interviewers}
+      bookInterview={bookInterview}
     />
     );
   })
