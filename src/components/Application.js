@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 
 import DayList from "./DayList";
@@ -21,9 +20,6 @@ export default function Application(props) {
   
   const schedule = appointments.map((appointment) => {
     const interview = getInterview(state, appointment.interview);
-
-    console.log(interview);
-
     return(
     <Appointment
       key={appointment.id}
@@ -52,7 +48,7 @@ export default function Application(props) {
         interviewers: all[2].data
       }));
     })
-  },[])
+  },[]);
 
   return (
     <main className="layout">
