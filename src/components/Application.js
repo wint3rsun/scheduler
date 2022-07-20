@@ -17,49 +17,50 @@ export default function Application(props) {
   });
 
   function bookInterview(id, interview) {
-    return axios
-    .put((`/api/appointments/${id}`), {interview})
-    .then((response) => {
-      const appointment = {
-        ...state.appointments[id],
-        interview: {...interview}
-      };
-      
-      const appointments = {
-        ...state.appointments,
-        [id]: appointment
-      };
+    return (
+      axios
+        .put((`/api/appointments/${id}`), { interview })
+        .then((response) => {
+          const appointment = {
+            ...state.appointments[id],
+            interview: { ...interview }
+          };
 
-      setState({
-        ...state,
-        appointments
-      });
-    })
-    .catch(err => console.log(err));
+          const appointments = {
+            ...state.appointments,
+            [id]: appointment
+          };
+
+          setState({
+            ...state,
+            appointments
+          });
+        })
+    )
   };
 
   function cancelInterview(id) {
-    console.log("I will remove: ", id);
 
-    return axios
-    .delete(`/api/appointments/${id}`)
-    .then((response) => {
-      const appointment = {
-        ...state.appointments[id],
-        interview: null
-      };
-      
-      const appointments = {
-        ...state.appointments,
-        [id]: appointment
-      };
-      
-      setState({
-        ...state,
-        appointments
-      });
-    })
-    .catch(err => console.log(err));
+    return (
+      axios
+        .delete(`/api/appointments/${id}`)
+        .then((response) => {
+          const appointment = {
+            ...state.appointments[id],
+            interview: null
+          };
+
+          const appointments = {
+            ...state.appointments,
+            [id]: appointment
+          };
+
+          setState({
+            ...state,
+            appointments
+          });
+        })
+    )
   }
 
   const appointments = getAppointmentsForDay(state, state.day);
