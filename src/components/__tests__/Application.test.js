@@ -4,7 +4,6 @@ import { render, cleanup, waitForElement, fireEvent } from "@testing-library/rea
 
 import Application from "components/Application";
 
-//import "__mocks__/axios"
 
 afterEach(cleanup);
 
@@ -18,6 +17,3 @@ it("changes the schedule when a new day is selected", async () => {
   expect(getByText("Leopold Silvers")).toBeInTheDocument();
 });
 
-// it("defaults to Monday and changes the schedule when a new day is selected", () => {
-//   render(<Application />);
-// });
