@@ -41,7 +41,10 @@ export default function Form(props) {
             type="text"
             placeholder= {student || "Enter Student Name"}
             value={student}
-            onChange={(e) => setStudent(e.target.value)}
+            onChange={(e) => {
+              setError("");
+              setStudent(e.target.value)}
+            }
             data-testid="student-name-input"
           />
         </form>
@@ -49,7 +52,10 @@ export default function Form(props) {
         <InterviewerList
           interviewers={props.interviewers}
           value={interviewer}
-          onChange={setInterviewer}
+          onChange={(e) => {
+            setError("");
+            setInterviewer(e);
+          }}
         />
       </section>
       <section className="appointment__card-right">
