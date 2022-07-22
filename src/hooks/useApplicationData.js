@@ -26,6 +26,8 @@ export default function useApplicationData() {
   }
 
   function bookInterview(id, interview) {
+    const mode = (state.appointments[id].interview ? null : "remove-spot");
+
     return (
       axios
         .put((`/api/appointments/${id}`), { interview })
@@ -41,7 +43,7 @@ export default function useApplicationData() {
             [id]: appointment
           };
           
-          const days = updateSpot("remove-spot");
+          const days = updateSpot(mode);
 
           setState({
             ...state,
