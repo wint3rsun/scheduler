@@ -5,7 +5,6 @@ import { render, cleanup, waitForElement, fireEvent, getByText, prettyDOM, getAl
 
 import Application from "components/Application";
 
-
 afterEach(cleanup);
 
 describe("Application", () => {
@@ -44,11 +43,12 @@ describe("Application", () => {
     expect(getByText(day, "no spots remaining")).toBeInTheDocument();
   });
 
+  //this test is the only one failing
   it("loads data, cancels an interview and increase the spots remaining for Monday by 1", async () => {
     const { container, debug } = render(<Application />);
 
     await waitForElement(() => getByText(container, "Archie Cohen"));
-
+    //debug(container); its saying no spots remaining but should be one here
     const appointment = getAllByTestId(container, "appointment").find(appointment => queryByText(appointment, "Archie Cohen"));
 
     fireEvent.click(getByAltText(appointment, "Delete"));
@@ -85,7 +85,7 @@ describe("Application", () => {
     await waitForElement(() => getByText(appointment, "Lydia Miller-Jones"));
     
     const day = getAllByTestId(container, "day").find(day => queryByText(day, "Monday"));
-    expect(getByText(day, "1 spots remaining")).toBeInTheDocument();
+    expect(getByText(day, "1 spot remaining")).toBeInTheDocument();
   })
 
   it("shows the save error when failing to save an appointment", async () => {
